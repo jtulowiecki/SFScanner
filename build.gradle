@@ -23,8 +23,9 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:28.2-jre'
-    
+
     implementation 'net.portswigger.burp.extender:burp-extender-api:2.1'
+    implementation 'com.google.code.gson:gson:2.8.7'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'

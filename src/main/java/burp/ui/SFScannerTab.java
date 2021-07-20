@@ -13,7 +13,7 @@ import burp.ITab;
 public class SFScannerTab extends JSplitPane implements ITab {
 
 	private static final long serialVersionUID = 1L;
-	private RequestTable requestTable;
+	private ActionList actionList;
 	private String tabName;
 	final Dimension configurationPaneDimension = new Dimension(470, 200);
 
@@ -21,9 +21,9 @@ public class SFScannerTab extends JSplitPane implements ITab {
 
 		super(JSplitPane.VERTICAL_SPLIT);
 		
-		requestTable = new RequestTable(new DefaultTableModel());
+		this.actionList = new ActionList();
 				
-		JScrollPane logTableScrollPane = new JScrollPane(requestTable);
+		JScrollPane logTableScrollPane = new JScrollPane(actionList);
 		logTableScrollPane.setMinimumSize(configurationPaneDimension);
 		logTableScrollPane.setPreferredSize(new Dimension(10000, 10));
 
@@ -59,7 +59,7 @@ public class SFScannerTab extends JSplitPane implements ITab {
 		return this;
 	}
 	
-	public RequestTable getRequestTable() {
-		return this.requestTable;
+	public ActionList getActionList() {
+		return this.actionList;
 	}
 }

@@ -1,6 +1,7 @@
 package burp;
 
 import burp.ui.SFScannerTab;
+
 import java.io.PrintWriter;
 
 public class BurpExtender implements IBurpExtender {
@@ -11,11 +12,11 @@ public class BurpExtender implements IBurpExtender {
 	public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
 		
 		PrintWriter stdout = new PrintWriter(callbacks.getStdout(), true);
-        
+		
 		callbacks.setExtensionName(pluginName);
 		sTab = new SFScannerTab(pluginName, callbacks);
 		callbacks.customizeUiComponent(sTab);
         callbacks.addSuiteTab(sTab);
-        callbacks.registerHttpListener(new Interceptor(callbacks, stdout, stdout, sTab));
+        callbacks.registerHttpListener(new Interceptor(callbacks, sTab));
 	}
 }
