@@ -1,34 +1,36 @@
 package burp.ui;
 
 import javax.swing.JTable;
-import javax.swing.table.TableColumn;
+import javax.swing.table.DefaultTableModel;
 
 public class RequestTable extends JTable {
 
 	private static final long serialVersionUID = 1L;
+	private DefaultTableModel model;
 
-	public RequestTable() {
+	public RequestTable(DefaultTableModel model) {
+		super(model);
+		this.model = model;
 		this.init();
 	}
 	
 	public void init() {
 		
-		TableColumn firstCol = new TableColumn();
-		firstCol.setPreferredWidth(5);
-		addColumn(firstCol);
+		model.addColumn("#");
+		model.addColumn("Host");
+		model.addColumn("Method");
+		model.addColumn("URL");
 		
-		TableColumn secondCol = new TableColumn();
-		secondCol.setPreferredWidth(50);
-		addColumn(secondCol);
-		
-		TableColumn thirdCol = new TableColumn();
-		thirdCol.setPreferredWidth(250);
-		addColumn(thirdCol);
-		
-		TableColumn fourthCol = new TableColumn();
-		fourthCol.setPreferredWidth(80);
-		addColumn(fourthCol);
+		this.getColumnModel().getColumn(0).setPreferredWidth(50);
+		this.getColumnModel().getColumn(1).setPreferredWidth(220);
+		this.getColumnModel().getColumn(2).setPreferredWidth(100);
+		this.getColumnModel().getColumn(3).setPreferredWidth(430);
 		
 		setAutoCreateRowSorter(true);
+		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);		
+	}
+	
+	public void addRow(int number, String host, String method, String url) {
+		this.model.addRow(new Object[]{String.valueOf(number) , host, method, url});
 	}
 }

@@ -5,12 +5,15 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.table.DefaultTableModel;
+
 import burp.IBurpExtenderCallbacks;
 import burp.ITab;
 
 public class SFScannerTab extends JSplitPane implements ITab {
 
 	private static final long serialVersionUID = 1L;
+	private RequestTable requestTable;
 	private String tabName;
 	final Dimension configurationPaneDimension = new Dimension(470, 200);
 
@@ -18,7 +21,7 @@ public class SFScannerTab extends JSplitPane implements ITab {
 
 		super(JSplitPane.VERTICAL_SPLIT);
 		
-		RequestTable requestTable = new RequestTable();
+		requestTable = new RequestTable(new DefaultTableModel());
 				
 		JScrollPane logTableScrollPane = new JScrollPane(requestTable);
 		logTableScrollPane.setMinimumSize(configurationPaneDimension);
@@ -54,5 +57,9 @@ public class SFScannerTab extends JSplitPane implements ITab {
 	@Override
 	public Component getUiComponent() {
 		return this;
+	}
+	
+	public RequestTable getRequestTable() {
+		return this.requestTable;
 	}
 }
